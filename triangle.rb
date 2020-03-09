@@ -16,6 +16,9 @@
 def triangle(a, b, c)
   angles = [a,b,c].sort
 
+  raise(TriangleError) if angles.min <= 0
+  raise(TriangleError) if angles[0] + angles[1] <= angles[2] 
+
   if angles[0] == angles[1] && angles[1] == angles[2]
     :equilateral
   elsif ( angles[0] == angles[1] && angles[1] != angles[2] ) || ( angles[1] == angles[2] && angles[1] != angles[0] )
