@@ -14,7 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # * A one (that is not part of a set of three) is worth 100 points.
 #
 # * A five (that is not part of a set of three) is worth 50 points.
-#
+#5
 # * Everything else is worth 0 points.
 #
 #
@@ -30,7 +30,25 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  if dice == []
+    0
+  end
+  score = 0
+  scoring = {
+    1 => {1 => 100, 2 => 200, 3 => 1000, 4 => 1100, 5 => 1200},
+    2 => {3 => 200},
+    3 => {3 => 300},
+    4 => {3 => 400},
+    5 => {1 => 50, 2 => 100, 3 => 500, 4 => 550, 5 => 600},
+    6 => {3 => 600},
+  }
+  (1..6).each do |n|
+    add = scoring[n][dice.count(n)]
+    if add.is_a?(Integer)
+      score += add
+    end
+  end
+  score
 end
 
 class AboutScoringProject < Neo::Koan
